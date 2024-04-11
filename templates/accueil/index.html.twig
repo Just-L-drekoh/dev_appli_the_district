@@ -5,7 +5,15 @@
 {% block body %}
 <video  width="100%"  class="d-none d-md-flex" loop autoplay muted>
     <source src="img/images_the_district/restaurant.mp4" type="video/mp4">
-    
 </video>
 <p>Ceci est une page d'Accueil</p>
+
+<ul>
+{% for plat in plats %}
+  <li>{{plat.categorie.libelle}} </li>
+  <li>{{ plat.libelle}} </li>
+   <img  class="w-50" src="{{ asset('img/images_the_district/food/' ~ plat.image) }}">
+ </li> {{ plat.description}}</li>
+{% endfor %}
+</ul>
 {% endblock %}
