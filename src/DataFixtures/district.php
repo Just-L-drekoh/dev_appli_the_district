@@ -11,15 +11,15 @@
 
 /* `azerty`.`categorie` */
 $categorie = array(
-  array('id' => '4', 'libelle' => 'Pizza', 'image' => 'Assets/images_the_district/category/cat_pizza.jpg', 'active' => 'Yes'),
-  array('id' => '5', 'libelle' => 'Burger', 'image' => 'Assets/images_the_district/category/cat_burger.jpg', 'active' => 'Yes'),
-  array('id' => '9', 'libelle' => 'Carnivore', 'image' => 'Assets/images_the_district/category/cat_carnivore.jpg', 'active' => 'Yes'),
-  array('id' => '10', 'libelle' => 'Pasta', 'image' => 'Assets/images_the_district/category/cat_pasta.jpg', 'active' => 'Yes'),
-  array('id' => '11', 'libelle' => 'Salade', 'image' => 'Assets/images_the_district/category/cat_salade.jpg', 'active' => 'Yes'),
-  array('id' => '12', 'libelle' => 'Asian Food', 'image' => 'Assets/images_the_district/category/cat_sushi.jpg', 'active' => 'No'),
-  array('id' => '13', 'libelle' => 'Sandwich', 'image' => 'Assets/images_the_district/category/cat_sandwich.jpg', 'active' => 'Yes'),
-  array('id' => '14', 'libelle' => 'Poisson', 'image' => 'Assets/images_the_district/category/cat_poisson.jpg', 'active' => 'Yes'),
-  array('id' => '16', 'libelle' => 'Partage', 'image' => 'Assets/images_the_district/category/cat_partage.jpg', 'active' => 'No')
+  array('id' => '4', 'libelle' => 'Pizza', 'image' => 'cat_pizza.jpg', 'active' => 'Yes'),
+  array('id' => '5', 'libelle' => 'Burger', 'image' => 'cat_burger.jpg', 'active' => 'Yes'),
+  array('id' => '9', 'libelle' => 'Carnivore', 'image' => 'cat_carnivore.jpg', 'active' => 'Yes'),
+  array('id' => '10', 'libelle' => 'Pasta', 'image' => 'cat_pasta.jpg', 'active' => 'Yes'),
+  array('id' => '11', 'libelle' => 'Salade', 'image' => 'cat_salade.jpg', 'active' => 'Yes'),
+  array('id' => '12', 'libelle' => 'Asian Food', 'image' => 'cat_sushi.jpg', 'active' => 'No'),
+  array('id' => '13', 'libelle' => 'Sandwich', 'image' => 'cat_sandwich.jpg', 'active' => 'Yes'),
+  array('id' => '14', 'libelle' => 'Poisson', 'image' => 'cat_poisson.jpg', 'active' => 'Yes'),
+  array('id' => '16', 'libelle' => 'Partage', 'image' => 'cat_partage.jpg', 'active' => 'No')
 );
 
 /* `azerty`.`commande` */

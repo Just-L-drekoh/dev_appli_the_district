@@ -9,6 +9,13 @@
 <p>Ceci est une page d'Accueil</p>
 
 <ul>
+{% for categorie in categories %}
+<li>{{categorie.libelle}}</li>
+   <img  class="w-50" src="{{ asset('img/images_the_district/category/' ~ categorie.image) }}">
+
+{% endfor %}
+</ul>
+<ul>
 {% for plat in plats %}
   <li>{{plat.categorie.libelle}} </li>
   <li>{{ plat.libelle}} </li>
