@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Plat;
+use App\Entity\Commande;
+use App\Entity\Utilisateur;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +18,15 @@ class AccueilController extends AbstractController
     {
         $categories = $em->getRepository(Categorie::class)->findAll();
         $plats = $em->getRepository(Plat::class)->findAll();
+        $commandes = $em->getRepository(Commande::class)->findAll();
+        $users = $em->getRepository(Utilisateur::class)->findAll();
+
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'categories' => $categories,
             'plats' => $plats,
+            'commandes' => $commandes,
+            'users' => $users,
         ]);
     }
 }
