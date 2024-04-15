@@ -16,6 +16,23 @@ class TheDistrictFixture extends Fixture
     {
         include 'district.php';
 
+
+        foreach ($utilisateur as $user) {
+            $userDB = new Utilisateur();
+            $userDB
+                ->setEmail($user['email'])
+                ->setPassword($user['password'])
+                ->setNom($user['nom'])
+                ->setPrenom($user['prenom'])
+                ->setTelephone($user['telephone'])
+                ->setAdresse($user['adresse'])
+                ->setCp($user['cp'])
+                ->setVille($user['ville']);
+
+            $manager->persist($userDB);
+        }
+        $manager->flush();
+
         foreach ($categorie as $cat) {
             $categorieDB = new Categorie();
             $categorieDB
@@ -60,14 +77,16 @@ class TheDistrictFixture extends Fixture
 
 
         $detailRepo = $manager->getRepository(Detail::class);
-
+        $userRepo = $manager->getRepository(Utilisateur::class);
+        $user = $userRepo->find(1);
         foreach ($commande as $comm) {
             $commandeDB = new Commande();
             $dateCommande = new \DateTime($comm['date_commande']);
             $commandeDB
                 ->setDateCommande($dateCommande)
                 ->setTotal($comm['total'])
-                ->setEtat($comm['etat']);
+                ->setEtat($comm['etat'])
+                ->setUtilisateur($user);
             $id = $comm['id_detail'];
             $detail = $detailRepo->find($id);
             $commandeDB->addDetail($detail);
@@ -76,24 +95,15 @@ class TheDistrictFixture extends Fixture
         $manager->flush();
 
         $commandeRepo = $manager->getRepository(Commande::class);
-
-        foreach ($utilisateur as $user) {
-            $userDB = new Utilisateur();
-            $userDB
-                ->setEmail($user['email'])
-                ->setPassword($user['password'])
-                ->setNom($user['nom'])
-                ->setPrenom($user['prenom'])
-                ->setTelephone($user['telephone'])
-                ->setAdresse($user['adresse'])
-                ->setCp($user['cp'])
-                ->setVille($user['ville'])
-                ->setRoles($user['roles']);
-            $id = $user['id_commande'];
-            $commande = $commandeRepo->find($id);
-            $userDB->addCommande($commande);
-            $manager->persist($userDB);
+        foreach ($utilisateur as $util) {
+            $id_user = $util['id'];
+            $id_commande = $util['id_commande'];
+            $user = $userRepo->find($id_user);
+            $order = $commandeRepo->find($id_commande);
+            $user->addCommande($order);
+            $order->setUtilisateur($user);
         }
+
         $manager->flush();
     }
 }

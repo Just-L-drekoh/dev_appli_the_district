@@ -15,14 +15,39 @@
 
 {% endfor %}
 </ul>
-<ul>
-{% for plat in plats %}
-  <li>{{plat.categorie.libelle}} </li>
-  <li>{{ plat.libelle}} </li>
-   <img  class="w-50" src="{{ asset('img/images_the_district/food/' ~ plat.image) }}">
- </li> {{ plat.description}}</li>
-{% endfor %}
-</ul>
+{# templates/accueil/index.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue sur notre site</h1>
+
+    <h2>Liste des catégories :</h2>
+    <ul>
+        {% for categorie in categories %}
+            <li>{{ categorie.libelle }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Liste des plats :</h2>
+    <ul>
+        {% for plat in plats %}
+            <li>{{ plat.libelle }} - {{ plat.description }}</li>
+        {% endfor %}
+    </ul>
+
+    
+
+    <h2>Liste des utilisateurs :</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.nom }}
+
+ {% endfor %}
+    </ul>
 
 
 {% endblock %}

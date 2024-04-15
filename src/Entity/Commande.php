@@ -28,10 +28,11 @@ class Commande
     /**
      * @var Collection<int, detail>
      */
-    #[ORM\OneToMany(targetEntity: detail::class, mappedBy: 'commande')]
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'Commande')]
     private Collection $detail;
 
-    #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[ORM\ManyToOne(inversedBy: 'Commande')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
 
     public function __construct()
