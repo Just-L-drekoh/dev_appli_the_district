@@ -26,11 +26,18 @@ ul {
     opacity: 0.4;
 }
 
+h1 {
+    color: beige;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+}
+
 h2 {
     text-decoration: underline;
     text-underline-offset: 3px;
 
 }
+
 
 h2,
 h3,
@@ -42,4 +49,41 @@ p {
     font-size: 2vh;
     margin: 2%;
     text-align: center;
+}
+
+.card {
+    background-color: #242420;
+}
+
+.button {
+    display: flex;
+    justify-content: end;
+}
+
+.btn-link {
+    background-color: transparent;
+    border: 2px solid red;
+    color: red;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+
+.btn-link:hover {
+    color: white;
+    background-color: red;
+}
+
+
+#mentions {
+    background-color: rgba(0, 0, 0, 0.226);
+    width: 1920px;
+    height: 568px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

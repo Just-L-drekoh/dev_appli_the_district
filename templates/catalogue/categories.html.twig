@@ -3,19 +3,31 @@
 {% block title %}The District : Categories{% endblock %}
 
 {% block body %}
-{# <ul>
-{% for categorie in categories %}
-<li>{{ categorie.libelle}}</li>
-{% endfor %}
-
-
-</ul> #}
 
 
 <video  width="100%"  class="d-none d-md-flex" loop autoplay muted>
     <source src="{{asset ('img/images_the_district/cuisine.mp4')}}" type="video/mp4">
     
 </video>
+
+
+<div id="presentation_categorie"></div>
+
+<div class="categories row">
+  {% for categorie in categories %}
+  <div class='card col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center p-0 m-0'>
+    <img class='card-img-top' src="{{asset('/img/images_the_district/category/' ~ categorie.image)}}" style="max-height: 150px; object-fit: cover;">
+    <div class='card-body'>
+      <h3 class="justify-content-center">{{categorie.libelle}}</h3>
+      <div class='button'>
+      <a class='btn btn-link '>Voir les plats -></a>
+      </div>    
+    </div>
+  </div>
+  {% endfor %} 
+</div>
+
+
 
 
 {% endblock %} 

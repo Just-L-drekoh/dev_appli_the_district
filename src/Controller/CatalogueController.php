@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Entity\Plat;
 use App\Entity\Commande;
+use App\Entity\Detail;
 use App\Entity\Utilisateur;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,7 @@ class CatalogueController extends AbstractController
     {
         $categories = $em->getRepository(Categorie::class)->findAll();
         $plats = $em->getRepository(Plat::class)->findAll();
+        $details = $em->getRepository(Detail::class)->findAll();
         $commandes = $em->getRepository(Commande::class)->findAll();
         $users = $em->getRepository(Utilisateur::class)->findAll();
         return $this->render('catalogue/index.html.twig', [
@@ -25,6 +27,7 @@ class CatalogueController extends AbstractController
 
             'categories' => $categories,
             'plats' => $plats,
+            'details' => $details,
             'commandes' => $commandes,
             'users' => $users,
         ]);

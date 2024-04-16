@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 
 
-    //  Description De la page Categorie   (categorie.php)     //
+    //  Description De la page Categorie      //
 
     const categorie_thedistrict = $('#presentation_categorie');
     const title_cat_thedistrict = $('<h2>').text("Découvrez nos Catégories");
@@ -27,10 +27,13 @@ $(document).ready(function () {
 
 
 
-    //  Description De la page plat   (plat.php)     //
+    //  Description De la page plat    //
 
-    const plats_thedistrict = $('#presentation_plats_page');
+    const plats_thedistrict = $('#presentation_plat');
     const title_plats_thedistrict = $('<h2>').text("Découvrez nos Plats A la Carte");
     const description_plats_thedistrict = $('<p>').text("Bienvenue dans notre univers culinaire où chaque plat raconte une histoire de saveurs exquises et d'ingrédients soigneusement sélectionnés. Explorez notre menu varié, conçu pour satisfaire toutes les envies gastronomiques, des classiques intemporels aux créations audacieuses. Plongez dans un monde de délices avec nos entrées fraîches et appétissantes, parfaites pour démarrer votre expérience culinaire avec éclat. Poursuivez votre voyage gustatif avec nos plats principaux, où chaque bouchée est une fusion de textures et de goûts harmonieux. Que vous soyez adepte de viande, de poisson ou de plats végétariens, notre menu offre une sélection diversifiée pour combler tous les palais.");
+
+
+    plats_thedistrict.append(title_plats_thedistrict, description_plats_thedistrict);
 
 });
