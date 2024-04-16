@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The District : Accueil{% endblock %}
+
+{% block body %}
+<video  width="100%"  class="d-none d-md-flex" loop autoplay muted>
+    <source src="{{asset ('img/images_the_district/restaurant.mp4')}}" type="video/mp4">
+</video>
+
+
+
+<div id="presentation_district"></div>
+
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide w-50 justify-content-center d-flex mx-auto" data-bs-ride="carousel">
+  <div class="carousel-inner "> 
+  <div class="carousel-item active">
+      <img src="{{asset ('img/images_the_district/img-presentation.jpg')}}" class="d-block w-100" alt="img_presentation">
+    </div>
+    <div class="carousel-item">
+      <img src="{{asset ('img/images_the_district/img-salle.jpg')}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{asset ('img/images_the_district/img-bar.jpg')}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+<div id="presentation_salle"></div>
+
+{# <ul>
+{% for categorie in categories %}
+<li>{{categorie.libelle}}</li>
+   <img  class="w-50" src="{{ asset('img/images_the_district/category/' ~ categorie.image) }}">
+
+{% endfor %}
+</ul> #}
+
+
+
+    {# <h1>Bienvenue sur notre site</h1>
+
+    <h2>Liste des catégories :</h2>
+    <ul>
+        {% for categorie in categories %}
+            <li>{{ categorie.libelle }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Liste des plats :</h2>
+    <ul>
+        {% for plat in plats %}
+            <li>{{ plat.libelle }} - {{ plat.description }}</li>
+        {% endfor %}
+    </ul>
+
+    
+
+    <h2>Liste des utilisateurs :</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.nom }}
+
+ {% endfor %}
+    </ul> #}
+
+
+{% endblock %} 

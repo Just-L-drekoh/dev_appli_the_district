@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The District : plats_cat{% endblock %}
+
+{% block body %}
+<ul>
+{% for plat in plats %}
+<li>{{ plat.categorie.libelle}}</li>
+{% endfor %}
+
+
+</ul>
+
+{% endblock %} 
