@@ -17,7 +17,7 @@ class Detail
     private ?int $quantite = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
-    private ?plat $plat = null;
+    private ?Plat $plat = null;
 
     #[ORM\ManyToOne(inversedBy: 'detail')]
     private ?Commande $commande = null;

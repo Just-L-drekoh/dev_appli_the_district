@@ -41,6 +41,7 @@ h2 {
 
 h2,
 h3,
+h5,
 p {
     justify-content: center;
     display: flex;
@@ -62,8 +63,8 @@ p {
 
 .btn-link {
     background-color: transparent;
-    border: 2px solid red;
-    color: red;
+    border: 2px solid white;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -73,9 +74,21 @@ p {
 
 
 .btn-link:hover {
-    color: white;
-    background-color: red;
+    color: black;
+    background-color: white;
 }
+
+
+.img-card {
+    max-height: 350px;
+
+}
+
+.description {
+    border: 3px solid white;
+    border-radius: 10%;
+}
+
 
 
 #mentions {

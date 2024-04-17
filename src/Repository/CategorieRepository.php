@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,20 @@ class CategorieRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categorie::class);
+    }
+
+    public function bestCategories()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'select c.libelle
+            from App\Entity\Categorie c
+            join App\Entity\Plat p c
+            join App\Entity\Detail d p
+            group by c.id
+            order by sum(d.quantite) desc'
+        );
+        return $query->getResult();
     }
 
     //    /**

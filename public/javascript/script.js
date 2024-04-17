@@ -36,4 +36,17 @@ $(document).ready(function () {
 
     plats_thedistrict.append(title_plats_thedistrict, description_plats_thedistrict);
 
+
+    const best_categories = $('#best_categories');
+    const title_best_categories = $('<h2>').text("Nos Categories (Best-Sellers)");
+
+    best_categories.append(title_best_categories);
+
+
+    const best_plats = $('#best_plats');
+    const title_best_plats = $('<h2>').text("Nos Plats (Best-Sellers)");
+
+    best_plats.append(title_best_plats);
+
+
 });

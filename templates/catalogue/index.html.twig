@@ -29,14 +29,41 @@
 
 <div id="presentation_salle"></div>
 
-{# <ul>
-{% for categorie in categories %}
-<li>{{categorie.libelle}}</li>
-   <img  class="w-50" src="{{ asset('img/images_the_district/category/' ~ categorie.image) }}">
+<div id="best_categories"></div>
 
-{% endfor %}
-</ul> #}
+<div class="categories row">
+  {% for detail in details %}
+  <div class='card col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center p-0 m-0'>
+    <img class='card-img-top' src="{{asset('/img/images_the_district/category/' ~ detail.plat.categorie.image)}}" style="max-height: 150px; object-fit: cover;">
+    <div class='card-body'>
+      <h3 class="justify-content-center">{{detail.plat.categorie.libelle}}</h3>
+      <div class='button'>
+      <a href="{{path ('app_plats_cat', {"": detail.plat.categorie.libelle})}}" class='btn btn-link '>Voir les plats -></a>
+      </div>    
+    </div>
+  </div>
+  {% endfor %} 
+</div>
 
+
+
+<div id="best_plats"></div>
+
+<div class="plats row mt-5">
+  {% for detail in details %}
+  <div class='card col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center p-0 m-0'>
+    <img class='img-card' src="{{asset('/img/images_the_district/food/' ~ detail.plat.image)}}">
+    <div class='card-body'>
+      <h3 class="justify-content-center">{{detail.plat.libelle}}</h3>
+      <p class="description">{{detail.plat.description}}</p>
+      <h5>{{detail.plat.prix}} €</h5>
+      <div class='button'>
+      <button class='btn btn-link '>Ajouter au Panier -></button>
+      </div>    
+    </div>
+  </div>
+  {% endfor %} 
+</div>
 
 
     {# <h1>Bienvenue sur notre site</h1>
