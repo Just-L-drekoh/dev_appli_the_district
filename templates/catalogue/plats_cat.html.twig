@@ -3,12 +3,8 @@
 {% block title %}The District : plats_cat{% endblock %}
 
 {% block body %}
-<ul>
-{% for categorie in categories %}
-<li>{{ categorie.id}}</li>
+{% for plat in plats %}
+<h1>{{plat.libelle}}</h1>
 {% endfor %}
-
-
-</ul>
 
 {% endblock %} 

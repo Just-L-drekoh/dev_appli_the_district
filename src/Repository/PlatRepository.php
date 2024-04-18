@@ -21,28 +21,19 @@ class PlatRepository extends ServiceEntityRepository
         parent::__construct($registry, Plat::class);
     }
 
-    //    /**
-    //     * @return Plat[] Returns an array of Plat objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function bestPlats(): array
+    {
 
-    //    public function findOneBySomeField($value): ?Plat
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM App\Entity\Categorie c
+            JOIN App\Entity\Plat p WITH p.categorie = c
+            JOIN App\Entity\Detail d WITH d.plat = p
+            GROUP BY c.libelle
+            ORDER BY SUM(d.quantite) DESC'
+        );
+        $query->setMaxResults(5);
+        return $query->getResult();
+    }
 }

@@ -10,6 +10,7 @@ use App\Entity\Utilisateur;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -19,15 +20,15 @@ class CatalogueController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $best_categories = $em->getRepository(Categorie::class)->bestCategories();
-        $plats = $em->getRepository(Plat::class)->findAll();
-        $details = $em->getRepository(Detail::class)->findAll();
+        $best_plats = $em->getRepository(Plat::class)->bestPlats();
+
 
         return $this->render('catalogue/index.html.twig', [
             'controller_name' => 'CatalogueController',
 
             'categories' => $best_categories,
-            'plats' => $plats,
-            'details' => $details,
+            'plats' => $best_plats,
+
 
         ]);
     }
@@ -57,18 +58,18 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/plats/categorie_id', name: 'app_plats_cat')]
-    public function plats_cat(EntityManagerInterface $em): Response
+    public function plats_cat(EntityManagerInterface $em, Request $request, $id): Response
     {
+        $id = $request->query->getInt('id');
 
-        $categories = $em->getRepository(Categorie::class)->findAll();
-        $plats = $em->getRepository(Plat::class)->findAll();
+        $categories = $em->getRepository(Categorie::class)->find($id);
+        $plats = $em->getRepository(Plat::class)->findBy(array('categorie_id'));
 
 
         return $this->render('catalogue/plats_cat.html.twig', [
             'controller_name' => 'CatalogueController',
+            'categories' => $categories
 
-            'categories' => $categories,
-            'plats' => $plats,
         ]);
     }
 }
