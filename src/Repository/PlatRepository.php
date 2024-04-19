@@ -33,7 +33,7 @@ class PlatRepository extends ServiceEntityRepository
             GROUP BY c.libelle
             ORDER BY SUM(d.quantite) DESC'
         );
-        $query->setMaxResults(5);
+        $query->setMaxResults(3);
         return $query->getResult();
     }
 }
