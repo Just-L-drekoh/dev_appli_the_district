@@ -58,17 +58,19 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/plats/categorie_id', name: 'app_plats_cat')]
-    public function plats_cat(EntityManagerInterface $em, Request $request, $id): Response
+    public function plats_cat(EntityManagerInterface $em, Request $request): Response
     {
         $id = $request->query->getInt('id');
 
-        $categories = $em->getRepository(Categorie::class)->find($id);
-        $plats = $em->getRepository(Plat::class)->findBy(array('categorie_id'));
 
+        $categorie = $em->getRepository(Categorie::class)->find($id);
+
+        $plats = $categorie->getPlats();
 
         return $this->render('catalogue/plats_cat.html.twig', [
             'controller_name' => 'CatalogueController',
-            'categories' => $categories
+            'categorie' => $categorie,
+            'plats' => $plats,
 
         ]);
     }
