@@ -57,7 +57,7 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/plats/categorie_id', name: 'app_plats_cat')]
+    #[Route('/plats/{categorie.id}', name: 'app_plats_cat')]
     public function plats_cat(EntityManagerInterface $em, Request $request): Response
     {
         $id = $request->query->getInt('id');

@@ -10,4 +10,31 @@
 
 <h1>Ceci est une page de Contact</h1>
 
+<div class="row text-center">
+
+    {{ form_start(form) }}
+   <div class="error">
+   {{form_errors(form)}}
+    </div>
+
+<div class="row">
+    <div class="col-9 mx-auto mt-4 mb-2">
+        {{form_row(form.Nom)}}
+    </div>
+    <div class="col-9 mx-auto mb-2">
+        {{form_row(form.Prenom)}}
+    </div>
+    <div class="col-9 mx-auto mb-2">
+        {{form_row(form.Email)}}
+    </div>
+    <div class="col-9 mx-auto mb-2">
+        {{form_row(form.Telephone)}}
+    </div>
+    <div class="col-9 mx-auto mb-2">
+        {{form_row(form.Demande)}}
+    </div>
+
+    </div>
+    {{form_end(form)}}
+    </div>
 {% endblock %}
