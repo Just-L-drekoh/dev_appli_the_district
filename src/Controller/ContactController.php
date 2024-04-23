@@ -6,40 +6,52 @@ use App\Entity\Contact;
 use App\Form\ContactFormType;
 use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
 
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    #[IsGranted("ROLE_USER")]
+    public function contact(Request $request, MailerInterface $mailer, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(ContactFormType::class);
+        $data_mail = new Contact();
+        $form = $this->createForm(ContactFormType::class, $data_mail);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData(); // Récupère l'objet Contact à partir des données du formulaire
 
-            // Utilisez les propriétés de l'objet Contact pour créer l'email
-            $email = (new Email())
-                ->from($contact->getEmail())
-                ->to('you@example.com')
-                ->subject('Nouveau message de contact')
-                ->text('Nom: ' . $contact->getNom() . "\n" . 'Email: ' . $contact->getEmail() . "\n" . 'Message: ' . $contact->getDemande());
+            $em->persist($data_mail);
+            $em->flush();
+
+
+            $email = (new TemplatedEmail())
+                ->from($data_mail->getEmail())
+                ->to('The_District@gmail.com')
+                ->subject('Demande de contact')
+                ->htmlTemplate('contact/mail.html.twig')
+                ->context(['data_mail' => $data_mail]);
 
             $mailer->send($email);
 
-            $entityManager->persist($contact);
-            $entityManager->flush();
+
+            $emailConfirmation = (new Email())
+                ->from('The_District@gmail.com')
+                ->to($data_mail->getEmail())
+                ->subject('Confirmation de votre demande de contact')
+                ->text('Merci pour votre demande de contact. Nous avons bien reçu vos informations.');
+
+            $mailer->send($emailConfirmation);
 
             return $this->redirectToRoute('app_accueil');
         }
 
         return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
             'form' => $form->createView(),
         ]);
     }
