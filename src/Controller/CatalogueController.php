@@ -65,6 +65,7 @@ class CatalogueController extends AbstractController
 
         $categorie = $em->getRepository(Categorie::class)->find($id);
 
+
         $plats = $categorie->getPlats();
 
         return $this->render('catalogue/plats_cat.html.twig', [
