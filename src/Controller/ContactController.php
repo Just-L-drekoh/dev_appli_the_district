@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Service\MailService;
 use App\Form\ContactFormType;
 use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    #[IsGranted("ROLE_USER")]
+    #[IsGranted("ROLE_CLIENT")]
     public function contact(Request $request, MailerInterface $mailer, EntityManagerInterface $em): Response
     {
         $data_mail = new Contact();
@@ -37,6 +38,8 @@ class ContactController extends AbstractController
                 ->htmlTemplate('contact/mail.html.twig')
                 ->context(['data_mail' => $data_mail]);
 
+
+
             $mailer->send($email);
 
 
@@ -54,5 +57,11 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/demo')]
+    public function demo(MailService $ms)
+    {
+        dd($ms);
     }
 }
