@@ -7,6 +7,7 @@ use App\Service\MailService;
 use App\Form\ContactFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -14,6 +15,7 @@ class ContactController extends AbstractController
 {
 
     #[Route('/contact', name: 'app_contact')]
+    #[IsGranted("ROLE_CLIENT")]
     public function mail(Request $request, MailService $ms)
     {
         $form = $this->createForm(ContactFormType::class);

@@ -58,7 +58,7 @@ p {
 
 .button {
     display: flex;
-    justify-content: end;
+    justify-content: center;
 }
 
 .btn-link {
@@ -99,4 +99,15 @@ p {
     justify-content: center;
     align-items: center;
 
+}
+
+#btn-form {
+    float: right;
+}
+
+.label {
+    color: white;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
 }

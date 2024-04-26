@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The District Votre Profile !{% endblock %}
+
+{% block body %}
+<div class="container" id="mentions" >
+<h1>Connexion/Inscription</h1>
+</div>
+
+<div class="container d-flex justify-content-around mt-5 mb-5">
+
+    <div class="card  col-3">
+        <h3>Connexion</h3>
+            <div class="card-body">
+            <p>Vous avez deja un compte connectez vous des maintenant !!!</p>
+            <a href="{{path ('app_login')}}" class="btn btn-link d-flex justify-content-center" type="button">Se Connecter</a>
+            </div>
+    </div>
+
+    <div class="card col-3">
+        <h3>Inscription</h3>
+            <div class="card-body">
+                <p>Vous n'avez toujours pas de compte pour en cree un c'est juste ici !!!</p>
+                <a href="{{path ('app_register')}}" class="btn btn-link d-flex justify-content-center" type="button">S'inscrire</a>
+            </div>
+    </div>
+{% if app.user %}
+    
+    <div class="card col-3">
+        <h3>votre profil</h3>
+            <div class="card-body">
+            <p>Pour voir votre profil est vos informations/commande  c'est juste ici !!!</p>
+            <a href="{{path ('app_detail_profile')}}" class="btn btn-link d-flex justify-content-center" type="button">voir Profile</a>
+            </div>
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -29,6 +29,8 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Demande = null;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
