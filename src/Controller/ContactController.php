@@ -19,9 +19,14 @@ class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
     #[IsGranted("ROLE_CLIENT")]
-    public function contact(Request $request, MailerInterface $mailer, EntityManagerInterface $em): Response
+    public function contact(Request $request, EntityManagerInterface $em, MailService $ms): Response
     {
         $data_mail = new Contact();
+        $form = $this->createForm(ContactFormType::class, $data_mail);
+        $form->handleRequest($request);
+
+        $data_mail = new Contact();
+
         $form = $this->createForm(ContactFormType::class, $data_mail);
         $form->handleRequest($request);
 
@@ -30,7 +35,6 @@ class ContactController extends AbstractController
             $em->persist($data_mail);
             $em->flush();
 
-
             $email = (new TemplatedEmail())
                 ->from($data_mail->getEmail())
                 ->to('The_District@gmail.com')
@@ -38,19 +42,7 @@ class ContactController extends AbstractController
                 ->htmlTemplate('contact/mail.html.twig')
                 ->context(['data_mail' => $data_mail]);
 
-
-
-            $mailer->send($email);
-
-
-            $emailConfirmation = (new Email())
-                ->from('The_District@gmail.com')
-                ->to($data_mail->getEmail())
-                ->subject('Confirmation de votre demande de contact')
-                ->text('Merci pour votre demande de contact. Nous avons bien reçu vos informations.');
-
-            $mailer->send($emailConfirmation);
-
+            $ms->sendEmail($email);
             return $this->redirectToRoute('app_accueil');
         }
 
@@ -58,10 +50,67 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    // #[Route('/contact', name: 'app_contact')]
+    // #[IsGranted("ROLE_CLIENT")]
+    // public function contact(Request $request, MailerInterface $mailer, EntityManagerInterface $em): Response
+    // {
+    //     $data_mail = new Contact();
+    //     $form = $this->createForm(ContactFormType::class, $data_mail);
+    //     $form->handleRequest($request);
 
-    #[Route('/demo')]
-    public function demo(MailService $ms)
-    {
-        dd($ms);
-    }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+
+    //         $em->persist($data_mail);
+    //         $em->flush();
+
+
+    //         $email = (new TemplatedEmail())
+    //             ->from($data_mail->getEmail())
+    //             ->to('The_District@gmail.com')
+    //             ->subject('Demande de contact')
+    //             ->htmlTemplate('contact/mail.html.twig')
+    //             ->context(['data_mail' => $data_mail]);
+
+
+
+    //         $mailer->send($email);
+
+
+    //         $emailConfirmation = (new Email())
+    //             ->from('The_District@gmail.com')
+    //             ->to($data_mail->getEmail())
+    //             ->subject('Confirmation de votre demande de contact')
+    //             ->text('Merci pour votre demande de contact. Nous avons bien reçu vos informations.');
+
+    //         $mailer->send($emailConfirmation);
+
+    //         return $th        // $this->mailService->sendEmail($request);
+    // return $this->redirectToRoute('app_accueil');is->redirectToRoute('app_accueil');
+    //     }
+
+    //     return $this->render('contact/index.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
+
+
+    // private $mailService;
+
+    // public function __construct(MailService $mailService)
+    // {
+    //     $this->mailService = $mailService;
+    // }
+
+    // #[Route('/contact', name: 'app_contact')]
+    // public function mail(Request $request): Response
+    // {
+    //     $data_mail = new Contact();
+    //     $form = $this->createForm(ContactFormType::class, $data_mail);
+    //     $form->handleRequest($request);
+    //     return $this->render('contact/index.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);$from, $to, $subject, $message
+    //     // $this->mailService->sendEmail($request);
+    //     // return $this->redirectToRoute('app_accueil');
+    // }
 }
