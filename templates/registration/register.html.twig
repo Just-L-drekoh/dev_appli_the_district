@@ -6,9 +6,62 @@
 <div class="container" id="mentions" >
 <h1>Inscription !!!</h1>
 </div>
-    <h1>Register</h1>
+    
+{# <div class="container d-flex justify-content-around">
+  <div class="col-10 col-md-3"{{ form_start(registrationForm) }}>
 
-   {{ form_start(registrationForm) }}
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.prenom.vars.id }}">Prénom</label>
+        {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.nom.vars.id }}">Nom</label>
+        {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.email.vars.id }}">Email</label>
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.telephone.vars.id }}">Téléphone</label>
+        {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.adresse.vars.id }}">Adresse</label>
+        {{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.cp.vars.id }}">Code postal</label>
+        {{ form_widget(registrationForm.cp, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.ville.vars.id }}">Ville</label>
+        {{ form_widget(registrationForm.ville, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label class="label" for="{{ registrationForm.plainPassword.vars.id }}">Mot de passe</label>
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group form-check">
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+        <label class="form-check-label label" for="{{ registrationForm.agreeTerms.vars.id }}">Accepter les termes et conditions</label>
+    </div>
+
+ <button class="btn btn-link" type="submit" id="btn-form">S'inscrire</button>
+
+  {{ form_end(registrationForm) }}  
+  </div>
+</div> #}
+
+{{ form_start(registrationForm) }}
         {{ form_row(registrationForm.prenom) }}
         {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.email) }}
@@ -22,6 +75,7 @@
     {{ form_end(registrationForm) }}
     <div class="text">
     <p>Deja un compte vient te connecter ici !!!</p>
-    <a href="{{path ('app_login')}}"class="btn btn-link" type="submit">Se connecter</a>
+    <a href="{{path ('app_login')}}"class="btn btn-link" id="btn-form" type="submit">Se connecter</a>
     </div>
+   
 {% endblock %}

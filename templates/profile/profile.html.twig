@@ -9,6 +9,7 @@
 
 <div class="container d-flex justify-content-around mt-5 mb-5">
 
+{% if not app.user %}
     <div class="card  col-3">
         <h3>Connexion</h3>
             <div class="card-body">
@@ -24,6 +25,7 @@
                 <a href="{{path ('app_register')}}" class="btn btn-link d-flex justify-content-center" type="button">S'inscrire</a>
             </div>
     </div>
+    {% endif %}
 {% if app.user %}
     
     <div class="card col-3">
@@ -36,4 +38,10 @@
 {% endif %}
 </div>
 
+{% if  app.user%}
+
+<div class="logout d-flex justify-content-center">
+<a  href="{{path ('app_logout')}}"class="btn btn-link">Se Deconnecter</a>
+</div>
+{% endif %}
 {% endblock %}

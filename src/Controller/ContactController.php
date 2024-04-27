@@ -11,6 +11,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
+
 class ContactController extends AbstractController
 {
 
@@ -18,6 +19,7 @@ class ContactController extends AbstractController
     #[IsGranted("ROLE_CLIENT")]
     public function mail(Request $request, MailService $ms)
     {
+
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
 
