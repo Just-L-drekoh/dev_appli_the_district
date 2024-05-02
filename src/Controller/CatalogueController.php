@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CatalogueController extends AbstractController
 {
-    #[Route('/', name: 'app_accueil')]
+
     public function index(EntityManagerInterface $em): Response
     {
         $best_categories = $em->getRepository(Categorie::class)->bestCategories();
@@ -33,7 +33,7 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/categories', name: 'app_categories')]
+
     public function categorie(EntityManagerInterface $em): Response
     {
         $categories = $em->getRepository(Categorie::class)->findAll();
@@ -45,7 +45,6 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/plats', name: 'app_plats')]
     public function plats(EntityManagerInterface $em): Response
     {
         $plats = $em->getRepository(Plat::class)->findAll();
@@ -57,13 +56,13 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/plats/categorie=', name: 'app_plats_cat')]
-    public function plats_cat(EntityManagerInterface $em, Request $request): Response
+
+    public function plats_cat(EntityManagerInterface $em, Request $request, string $libelle): Response
     {
-        $id = $request->query->getInt('id');
+        $libelle = $request->attributes->get('libelle');
 
 
-        $categorie = $em->getRepository(Categorie::class)->find($id);
+        $categorie = $em->getRepository(Categorie::class)->findOneBy(['libelle' => $libelle]);
 
 
         $plats = $categorie->getPlats();

@@ -3,3 +3,62 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+
+# CatalogueController
+
+
+app_accueil:
+    path: /
+    controller : App\Controller\CatalogueController::index
+
+
+app_categories:
+    path: /categories 
+    controller : App\Controller\CatalogueController::categorie
+
+app_plats :
+    path: /plats 
+    controller : App\Controller\CatalogueController::plats
+
+app_plats_cat :
+    path : /plats/{libelle}
+    controller : App\Controller\CatalogueController::plats_cat
+
+
+# ContactController
+
+
+app_contact : 
+    path : /contact 
+    controller : App\Controller\ContactController::mail
+
+
+# SecurityController
+
+
+app_login : 
+    path : /login
+    controller : App\Controller\SecurityController::login
+
+
+# RegistrationController
+
+
+app_register :
+    path : /inscription
+    controller : App\Controller\RegistrationController::register
+
+
+# ProfileController
+
+
+app_profile :
+    path : /profil
+    controller : App\Controller\ProfileController::index
+
+app_detail_profile :
+    path : /detail
+    controller : App\Controller\ProfileController::profile
+
+

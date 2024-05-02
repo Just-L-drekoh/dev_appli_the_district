@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
 
-    #[Route('/contact', name: 'app_contact')]
+
     #[IsGranted("ROLE_CLIENT")]
     public function mail(Request $request, MailService $ms)
     {

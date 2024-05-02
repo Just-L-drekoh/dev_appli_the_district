@@ -12,8 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
-    public function profile(EntityManagerInterface $em): Response
+    public function index(EntityManagerInterface $em): Response
     {
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController'
@@ -27,8 +26,8 @@ class ProfileController extends AbstractController
     {
         $this->userRepo = $userRepo;
     }
-    #[Route('/detail_profile', name: 'app_detail_profile')]
-    public function index(EntityManagerInterface $em): Response
+
+    public function profile(EntityManagerInterface $em): Response
     {
 
         $identifiant = $this->getUser()->getUserIdentifier();
